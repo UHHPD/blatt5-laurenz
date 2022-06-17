@@ -1,5 +1,6 @@
 #ifndef VEKTOR_HH
 #define VEKTOR_HH
+using namespace std;
 
 #include <iostream>
 
@@ -26,8 +27,8 @@ class Vektor {
     return ((x_ == v.x_) && (y_ == v.y_) && (z_ == v.z_));
   }
 
-  friend std::istream& operator>>(std::istream& is, Vektor& v);
-  friend std::ostream& operator<<(std::ostream& os, Vektor v);
+  friend istream& operator>>(istream& is, Vektor& v);
+  friend ostream& operator<<(ostream& os, Vektor v);
 
  private:
   double x_, y_, z_;
