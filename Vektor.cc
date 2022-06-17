@@ -1,39 +1,43 @@
 #include "Vektor.hh"
+#include <cmath>
+using namespace std;
 
-Vektor::Vektor(double nx, double xy, double nz) {
+Vektor::Vektor(double nx, double ny, double nz) {
   x_ = nx;
-  y_ = nz;
-  z_ = 1;
+  y_ = ny;
+  z_ = nz;
 }
 
-double Vektor::betrag() { return 0; }
-
-std::ostream& operator<<(std::ostream& os, Vektor v) {
-  os << "(" << v.x_ << "," << v.z_ << ")";
-  return os;
+double Vektor::betrag() {
+  double bet = sqrt(x_ * x_ + y_ * y_ + z_ * z_);
+  return bet;
 }
 
-std::istream& operator>>(std::istream& is, Vektor& v) {
-  is >> v.x_ >> v.y_ >> v.x_;
+ostream& operator<<(ostream& os, Vektor v) {
+  return os << "(" << v.x_ << "," << v.y_ << "," << v.z_ << ")";
+}
+
+istream& operator>>(istream& is, Vektor& v) {
+  is >> v.x_ >> v.y_ >> v.z_;
   return is;
 }
 
 Vektor Vektor::operator+(Vektor v) {
-  Vektor sum(x_ + v.x_, y_ + v.x_, z_ + v.y_);
+  Vektor sum(x_ + v.x_, y_ + v.y_, z_ + v.z_);
   return sum;
 }
 
 Vektor Vektor::operator-(Vektor v) {
-  Vektor sum(x_ - x_, y_ - v.y_, z_ + v.y_);
+  Vektor sum(x_ - v.x_, y_ - v.y_, z_ - v.z_);
   return sum;
 }
 
 double Vektor::mal(Vektor v) {
-  double erg;
+  double erg(x_ * v.x_ + y_ * v.y_ + z_ * v.z_);
   return erg;
 }
 
 Vektor Vektor::kreuz(Vektor v) {
-  Vektor erg;
+  Vektor erg(y_*v.z_ - z_*v.y_ , z_*v.x_ - x_*v.z_ , x_*v.y_ - y_*v.x_);
   return erg;
 }
